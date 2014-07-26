@@ -8,7 +8,7 @@ PHP Config Class
 ### Composer
 
     Via [composer](http://getcomposer.org/)
-    $ composer require php-curl-class/php-curl-class
+    $ composer require wangoviridans/config
     (https://packagist.org/packages/wangoviridans/config)
     {
         "require": {
