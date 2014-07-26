@@ -6,15 +6,16 @@ PHP Config Class
 ## Installation
 
 ### Composer
+    $ composer require wangoviridans/config
 
     Via [composer](http://getcomposer.org/)
-    $ composer require wangoviridans/config
     (https://packagist.org/packages/wangoviridans/config)
-    {
-        "require": {
-            "wangoviridans/config": ">= 0.0.1"
+
+        {
+            "require": {
+                "wangoviridans/config": ">= 0.0.1"
+            }
         }
-    }
 
     Or just clone and put somewhere inside your project folder.
     $ cd myapp/vendor
@@ -27,9 +28,12 @@ PHP Config Class
     <?php
     require 'Config/Config.php';
     //or require_once 'vendor/autoload.php' if you are using composer
+
+    use Wangoviridans\Config\Config;
+
     $config = new Config(array(
         'some.option' => 'SOME OPTION',
-        'someoption => 'ANOTHER SOME OPTION
+        'some.option2' => 'ANOTHER SOME OPTION'
     ));
 
     $config->setOption('some.option2', 'SOME OPTION 2');
@@ -42,19 +46,6 @@ PHP Config Class
         $config->hasOption('some.option'),
         $config->hasOption('some.option2'),
         $config->hasOption('bad.option'),
-        $config->hasOptions(array(
-            'some.option3',
-            'some.option4'
-        ));
-        $config->hasOptions(array(
-            'some.option3',
-            'bad.option'
-        ));
-        $config->hasOptions(array(
-            'some.option3',
-            'bad.option',
-            'some.option4
-        ), true);
 
         $config->getOption('some.option'),
         $config->getOption('some.option2'),
@@ -62,15 +53,11 @@ PHP Config Class
     );
 
     $config->unsetOption('some.option');
-    var_dump($this->hasOption('some.option'));
+    var_dump($config->hasOption('some.option'));
 
     $config->unsetOptions(array(
         'some.option3',
         'some.option4'
     ));
 
-    var_dump($config->hasOptions(array(
-        'some.option3',
-        'bad.option',
-        'some.option4
-    ), true);
+    var_dump($config->toArray());

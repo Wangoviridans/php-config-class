@@ -6,7 +6,7 @@ namespace Wangoviridans\Config;
  * Class Config
  * @package Wangoviriadns\Config
  */
-class Config {
+class Config extends Nested {
 	protected $container;
 
 	/**
@@ -22,7 +22,7 @@ class Config {
 	 * @return $this
 	 */
 	public function setOption($option, $value) {
-		$this->container[$option] = $value;
+		self::setNestedOption($this->container, $option, $value);
 	}
 
 	/**
@@ -30,16 +30,18 @@ class Config {
 	 * @return $this
 	 */
 	public function setOptions(array $options) {
-		$this->container = array_merge($this->container, $options);
+		foreach($options as $option => $value) {
+			$this->setOption($option, $value);
+		}
 	}
 
 	/**
 	 * @param string $option
-	 * @param null $default
+	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	public function getOption($option, $default = null) {
-		return $this->hasOption($option) ? $this->container[$option] : $default;
+		return self::getNestedOption($this->container, $option, $default);
 	}
 
 	/**
@@ -63,9 +65,7 @@ class Config {
 	 * @param $option
 	 */
 	public function unsetOption($option) {
-		if ($this->hasOption($option)) {
-			unset($this->container[$option]);
-		}
+		self::unsetNestedOption($this->container, $option);
 	}
 
 	/**
@@ -82,30 +82,7 @@ class Config {
 	 * @return bool
 	 */
 	public function hasOption($option) {
-		return array_key_exists($option, $this->container);
-	}
-
-	/**
-	 * @param $options
-	 * @param bool $asArray
-	 * @return array|bool
-	 */
-	public function hasOptions($options, $asArray = false) {
-		if (!$asArray) {
-			foreach($options as $option) {
-				if (!$this->hasOption($option)) {
-					return false;
-				}
-			}
-
-			return false;
-		}
-		$result = array();
-		foreach($options as $option) {
-			$result[] = $this->hasOption($option);
-		}
-
-		return $result;
+		return self::hasNestedOption($this->container, $option);
 	}
 
 	/**
