@@ -60,3 +60,17 @@ PHP Config Class
         $config->getOption('some.option2'),
         $config->getOption('bad.option', 'DEFAULT BAD OPTION VALUE')
     );
+
+    $config->unsetOption('some.option');
+    var_dump($this->hasOption('some.option'));
+
+    $config->unsetOptions(array(
+        'some.option3',
+        'some.option4'
+    ));
+
+    var_dump($config->hasOptions(array(
+        'some.option3',
+        'bad.option',
+        'some.option4
+    ), true);
