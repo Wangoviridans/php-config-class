@@ -32,12 +32,29 @@ PHP Config Class
         'someoption => 'ANOTHER SOME OPTION
     ));
 
-    $config->setOption('some.option2', 'SOME OPTION 2'),
+    $config->setOption('some.option2', 'SOME OPTION 2');
+    $config->setOptions(array(
+        'some.option3' => 'SOME OPTION 3',
+        'some.option4' => 'SOME OPTION 4'
+    ));
 
     var_dump(
         $config->hasOption('some.option'),
         $config->hasOption('some.option2'),
         $config->hasOption('bad.option'),
+        $config->hasOptions(array(
+            'some.option3',
+            'some.option4'
+        ));
+        $config->hasOptions(array(
+            'some.option3',
+            'bad.option'
+        ));
+        $config->hasOptions(array(
+            'some.option3',
+            'bad.option',
+            'some.option4
+        ), true);
 
         $config->getOption('some.option'),
         $config->getOption('some.option2'),
