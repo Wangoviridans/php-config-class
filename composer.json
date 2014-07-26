@@ -1,11 +1,10 @@
 {
 	"name": "wangoviridans/config",
 	"description": "PHP Config Class",
-	"version": "1.0.0",
 	"type": "library",
-	"minimum-stability": "stable",
 	"license": "MIT",
 	"keywords": ["Configuration", "Config"],
+	"version": "1.0.0",
 	"authors": [
 		{
 			"name": "Kirill Popov",
