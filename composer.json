@@ -10,5 +10,10 @@
 			"name": "Kirill Popov",
 			"email": "kirill.popov@me.com"
 		}
-	]
+	],
+	"autoload": {
+		"psr-4": {
+			"Wangoviridans\\Config\\": "src/Config/"
+		}
+	}
 }
